@@ -1,16 +1,27 @@
-﻿@page "/shoppinglist"
+﻿@layout ShoppingListLayout
+@page "/shoppinglist"
+
 @using FirstBlazorApp.Data;
 <PageTitle>@pageTitle</PageTitle>
 
 <h3>ShoppingList</h3>
 
 <EditForm Model="@grocery" OnSubmit="AddGrocery">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <p>
         <label>
             Name:
             <InputText @bind-Value="grocery.Name"/>
         </label>
     </p>
+    <p>
+        <label>
+            Price:
+            <InputNumber @bind-Value="grocery.Price" />
+        </label>
+    </p>
+    <button type="submit">Add Grocery</button>
 </EditForm>
 
 
@@ -47,23 +58,18 @@
 
 @code {
     private float sum = 0;
+
     private string groceryName = "";
     private float groceryPrice;
+    
     private Grocery grocery = new(); 
     private string pageTitle = "Our Groceries";
     private List<Grocery> groceries = new();
 
     private void AddGrocery()
     {
-        if(!string.IsNullOrWhiteSpace(groceryName) && groceryPrice > 0)
-        {
-            groceries.Add(grocery);
-            grocery = new();
-            //sum += groceryPrice;
-
-            //groceryName = string.Empty;
-            //groceryPrice = 0;
-        }
+        groceries.Add(grocery);
+        grocery = new();
         UpdateTotalAmount();
     }
 

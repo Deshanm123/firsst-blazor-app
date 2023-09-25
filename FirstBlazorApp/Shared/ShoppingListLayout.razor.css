@@ -1,0 +1,35 @@
+﻿body{
+    background-color:cadetblue
+}
+
+a{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:green;
+}
+
+.header{
+    grid-area:hd;
+    background-color:blue;
+    color:white;
+}
+
+
+
+.footer{
+    display:flex;
+    flex-direction:row;
+}
+
+.content{
+    grid-area:main;
+}
+
+::deep .sidebar {
+    background-color: azure;
+}
+
+
+::deep .layout {
+    display: grid;
+    background-color: purple;
+}
